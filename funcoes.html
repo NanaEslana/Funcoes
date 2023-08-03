@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcoes</title>
+</head>
+<body>
+    <script>
+        //funçãoes - arrow function 
+
+        //Feito em JavaScript
+        var bvindas = function(nome){
+             return 'Seja bem vindo ' + nome;
+        }
+        console.log(bvindas('Eslana'));
+
+        //Usando arrow function
+        const boasVindas = nome => `Seja bem vindo, ${nome}`
+        console.log(boasVindas('Eslana'));
+
+        //ThisBinding 
+        //this chamamos de contexto da função,ele e constante somos quando o contexto existe
+        //this referencia ao texto global 
+
+        const equipe = {
+            nome:'Logica de programação',
+            membros: ['JavaScript','Java','C','Python'],
+            membroDaEquipe: function(){
+                const that = this;// Contexto do objeto
+                this.membros.forEach(function(membro){
+                    console.log(`${membro} faz parte da equipe ${that.nome}`);
+                 })
+            }
+        }
+        equipe.membroDaEquipe(); 
+
+        //Melhorando usando a arrow function
+
+        const equipe = {
+             nome:'Logica de programação',
+            membros: ['JavaScript','Java','C','Python'],
+            membroDaEquipe: function(){
+                 this.membros.forEach(membro => {//Faz associação automatica com o pai dele.
+                    console.log(`${membro} faz parte da equipe ${this.nome}`);
+                 })
+            }
+        }
+         equipe.membroDaEquipe();
+
+            /*arrow function não e a solução para todos os problemas,
+            apesar de ser mais faceis de usar,a situação que ela não e ultilizada*/
+
+
+        //Objeto.
+        // duas maneiras de criar objeto: funcoes contrutoras e objetos literais.
+        /* objeto e uma sociedade de propriedade e cada uma e 
+            associad entre chaves e valores */
+        /* funções contrutorase quando ultilizamos a palavra new e ela cria uma
+            nova instancia no objeto */
+
+
+        //função contrutoras
+        function livros (titulo){
+         this.titulo = titulo;
+        }
+
+        var livro = new livro ('Hary Potter');
+        console.log(livro);
+
+        //Objeto literal
+        var livro = {
+            titulo: 'Anjos da Guarda'
+        }
+
+        livro.autor = 'Van goes';
+
+        console.log(livro);
+
+
+        //Melhorando Objeto literal 
+
+        var nome = 'Eslana';
+        var sobrenome = 'Regina';
+
+        var pessoas = {
+            nome,
+            sobrenome,
+            seApresentar(){
+             console.log(`Olá! Sou a ${this.nome} ${this.sobrenome}`)
+            }
+        }
+
+        pessoas.seApresentar();
+
+        // --------------------------------------
+        const novoMetodo = 'Invocar';
+        const objeto = {
+            [novoMetodo](){
+             console.log('Execultou o medodo');
+            }
+        }
+
+        objeto.Invocar(); 
+
+
+        const novofuncao = 'mostrar';
+        const propriedade = 'Nome';
+
+        const objeto1 = {
+            Nome: 'Objeto',
+            [`${novofuncao} ${propriedade}`](){
+                 console.log(this[propriedade]);
+            }
+        }
+
+        objeto.mostrarNome();
+
+    </script> 
+</body>
+</html>
